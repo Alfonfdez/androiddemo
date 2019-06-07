@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Star Wars</string>
+    <string name="main_image">Darth Vader</string>
+    <string name="app_titulo">Star Wars</string>
+    <string name="button_left">Me gusta</string>
+    <string name="button_right">No me gusta</string>
+    <string name="app_time">Tiempo</string>
+</resources>
