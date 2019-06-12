@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Calculadora</string>
+    <string name="button_ce">CE</string>
+    <string name="button_porcentaje">%</string>
+    <string name="button_mas">+</string>
+    <string name="button_menos">-</string>
+    <string name="button_siete">7</string>
+    <string name="button_ocho">8</string>
+    <string name="button_nueve">9</string>
+    <string name="button_division">/</string>
+    <string name="button_cuatro">4</string>
+    <string name="button_cinco">5</string>
+    <string name="button_seis">6</string>
+    <string name="button_multiplicar">x</string>
+    <string name="button_uno">1</string>
+    <string name="button_dos">2</string>
+    <string name="button_tres">3</string>
+    <string name="button_igual">=</string>
+    <string name="button_cero">0</string>
+    <string name="button_punto">.</string>
 </resources>
