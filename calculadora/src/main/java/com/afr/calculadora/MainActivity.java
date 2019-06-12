@@ -9,12 +9,13 @@ public class MainActivity extends AppCompatActivity {
 
     // I - DECLARAR VARIABLES
     private TextView display;
-    private String displayNumber = "";
+    private String displayNumber = "0";
+    private Estado estado = Estado.INICIAL;
 
     private double operando1 = 0;
     private double operando2 = 0;
-    private double resultado;
-    private String operacion;
+    private double resultado = 0;
+    private String operacion = "";
 
     private boolean estaOperando = false;
 
@@ -33,62 +34,73 @@ public class MainActivity extends AppCompatActivity {
         switch(view.getId()){
 
             case R.id.id_cero:
-                if(!estaOperando){
+                if(estado.equals(Estado.INICIAL)){
+                    displayNumber = "0";
+                } else if(estado.equals(Estado.OPERANDO1) && !displayNumber.equals("0")){
                     displayNumber += "0";
-                } else{
-                    displayNumber = "";
+                } else if(estado.equals(Estado.OPERANDO2) && !displayNumber.equals("0")){
                     displayNumber += "0";
-
-                    estaOperando = false;
+                } else if(estado.equals(Estado.RESULTADO)){
+                    displayNumber = "0";
+                    estado = Estado.INICIAL;
                 }
 
                 break;
 
             case R.id.id_uno:
-                if(!estaOperando){
-                    displayNumber += "1";
-                } else{
-                    displayNumber = "";
-                    displayNumber += "1";
+                if(estado.equals(Estado.INICIAL)){
+                    displayNumber = "1";
 
-                    estaOperando = false;
+                    if(operacion.equals("")){
+                        estado = Estado.OPERANDO1;
+                    }else{
+                        estado = Estado.OPERANDO2;
+                    }
+
+                } else if(estado.equals(Estado.OPERANDO1)){
+                    displayNumber += "1";
+                } else if(estado.equals(Estado.OPERANDO2)){
+                    displayNumber += "1";
+                } else if(estado.equals(Estado.RESULTADO)){
+                    displayNumber = "1";
+                    estado = Estado.OPERANDO1;
                 }
 
                 break;
             case R.id.id_dos:
-                if(!estaOperando){
-                    displayNumber += "2";
-                } else{
-                    displayNumber = "";
-                    displayNumber += "2";
+                if(estado.equals(Estado.INICIAL)){
+                    displayNumber = "2";
 
-                    estaOperando = false;
+                    if(operacion.equals("")){
+                        estado = Estado.OPERANDO1;
+                    }else{
+                        estado = Estado.OPERANDO2;
+                    }
+
+                } else if(estado.equals(Estado.OPERANDO1)){
+                    displayNumber += "2";
+                } else if(estado.equals(Estado.OPERANDO2)){
+                    displayNumber += "2";
+                } else if(estado.equals(Estado.RESULTADO)){
+                    displayNumber = "2";
+                    estado = Estado.OPERANDO1;
                 }
 
                 break;
             case R.id.id_tres:
-                if(!estaOperando){
-                    displayNumber += "3";
-                } else{
-                    displayNumber = "";
-                    displayNumber += "3";
-
-                    estaOperando = false;
-                }
-
                 break;
             case R.id.id_cuatro:
-
+                break;
             case R.id.id_cinco:
-
+                break;
             case R.id.id_seis:
-
+                break;
             case R.id.id_siete:
-
+                break;
             case R.id.id_ocho:
-
+                break;
             case R.id.id_nueve:
-
+                break;
 
             case R.id.id_punto:
                 displayNumber += ".";
@@ -97,12 +109,34 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.id_ce:
                 displayNumber = "";
+                operacion = null;
                 break;
             case R.id.id_porcentaje:
 
                 break;
 
             case R.id.id_mas:
+
+                if(estado.equals(Estado.OPERANDO1)){
+                    operando1 = Double.parseDouble(displayNumber);
+                    operacion = "+";
+
+                    estado = Estado.INICIAL;
+                }else if(estado.equals(Estado.OPERANDO2)){
+                    operando2 = Double.parseDouble(displayNumber);
+                    operacion = "+";
+
+                    resultado = sumar(operando1, operando2);
+                    String resultadoString = String.valueOf(resultado);
+                    displayNumber = resultadoString;
+
+                    estado = Estado.INICIAL;
+                }
+
+
+
+
+
                 if(operacion.equals("+")){
                     operando2 = Double.parseDouble(displayNumber);
 
@@ -187,4 +221,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+}
+
+enum Estado {
+    INICIAL, OPERANDO1, OPERANDO2, RESULTADO;
 }
