@@ -31,10 +31,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void botonPulsado(View view){
 
+        /*double operando1 = 3.3;
+        double operando2 = 3;
+
+        DecimalFormat df = new DecimalFormat("#,####");
+
+
+        double resultado = operando1 * operando2;
+
+        sysout(df.format(resultado));*/
+
         switch(view.getId()){
 
             case R.id.id_cero:
-                if(estado.equals(Estado.INICIAL)){
+                /*if(estado.equals(Estado.INICIAL)){
                     displayNumber = "0";
                 } else if(estado.equals(Estado.OPERANDO1) && !displayNumber.equals("0")){
                     displayNumber += "0";
@@ -43,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if(estado.equals(Estado.RESULTADO)){
                     displayNumber = "0";
                     estado = Estado.INICIAL;
-                }
+                }*/
 
                 break;
 
@@ -68,24 +78,6 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
             case R.id.id_dos:
-                if(estado.equals(Estado.INICIAL)){
-                    displayNumber = "2";
-
-                    if(operacion.equals("")){
-                        estado = Estado.OPERANDO1;
-                    }else{
-                        estado = Estado.OPERANDO2;
-                    }
-
-                } else if(estado.equals(Estado.OPERANDO1)){
-                    displayNumber += "2";
-                } else if(estado.equals(Estado.OPERANDO2)){
-                    displayNumber += "2";
-                } else if(estado.equals(Estado.RESULTADO)){
-                    displayNumber = "2";
-                    estado = Estado.OPERANDO1;
-                }
-
                 break;
             case R.id.id_tres:
                 break;
@@ -108,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
 
 
             case R.id.id_ce:
-                displayNumber = "";
-                operacion = null;
+                displayNumber = "0";
+                operacion = "";
                 break;
             case R.id.id_porcentaje:
 
@@ -127,32 +119,12 @@ public class MainActivity extends AppCompatActivity {
                     operacion = "+";
 
                     resultado = sumar(operando1, operando2);
+                    operando1 = resultado;
+
                     String resultadoString = String.valueOf(resultado);
                     displayNumber = resultadoString;
 
                     estado = Estado.INICIAL;
-                }
-
-
-
-
-
-                if(operacion.equals("+")){
-                    operando2 = Double.parseDouble(displayNumber);
-
-                    resultado = sumar(operando1, operando2);
-
-                    String resultadoString = String.valueOf(resultado);
-                    displayNumber = resultadoString;
-
-                    operando1 = Double.parseDouble(displayNumber);
-                } else{
-                    estaOperando = true;
-
-                    operacion = "+";
-                    operando1 = Double.parseDouble(displayNumber);
-
-
                 }
 
                 break;
@@ -165,20 +137,25 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.id_igual:
-                if(operacion.isEmpty()){
-                    break;
+                if(operacion.equals("")){
+
                 } else if(operacion.equals("+")){
                     operando2 = Double.parseDouble(displayNumber);
 
                     resultado = sumar(operando1, operando2);
 
-                    operacion = null;
+                    operando1 = resultado;
+
+                    operacion = "";
+
+                    String resultadoString = String.valueOf(resultado);
+                    displayNumber = resultadoString;
+
+
                 }
 
-                String resultadoString = String.valueOf(resultado);
-                displayNumber = resultadoString;
 
-                operando1 = Double.parseDouble(displayNumber);
+
 
                 break;
 
