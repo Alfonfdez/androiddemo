@@ -1,6 +1,7 @@
 package com.afr.listviewpersonalizado;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,6 +65,98 @@ public class Adaptador extends BaseAdapter {
 
         //Para cuando hagamos clic en el item y veamos la ficha completa
         imagen.setTag(i);
+        nombreCiudad.setTag(i);
+        pais.setTag(i);
+        numeroHabitantes.setTag(i);
+        calificacion.setTag(i);
+
+        // b) Podríamos hacerlo así
+        //imagen.setTag(imagenes[i]);
+
+
+        //Nuevas líneas de código
+        //Crearemos un 'listener', cuando hacemos clic en la imagen, con una clase anónima con su método (abstracto) a implementar ahora
+        imagen.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(contexto, VisorImagen.class);
+
+                intent.putExtra("IMG", imagenes[(Integer) v.getTag()]);
+
+                // b) Podríamos hacerlo así
+                //intent.putExtra("IMG", (Integer) v.getTag());
+
+                contexto.startActivity(intent);
+            }
+        });
+
+
+        //Nuevas líneas de código
+        //Crearemos un 'listener', cuando hacemos clic en la imagen, con una clase anónima con su método (abstracto) a implementar ahora
+        nombreCiudad.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(contexto, VisorDetalles.class);
+
+                intent.putExtra("CIUDAD", datos[(Integer) v.getTag()][0]);
+                intent.putExtra("PAIS", datos[(Integer) v.getTag()][1]);
+                intent.putExtra("HAB", datos[(Integer) v.getTag()][2]);
+                intent.putExtra("CAL", datos[(Integer) v.getTag()][3]);
+
+                contexto.startActivity(intent);
+            }
+        });
+
+        pais.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(contexto, VisorDetalles.class);
+
+                intent.putExtra("CIUDAD", datos[(Integer) v.getTag()][0]);
+                intent.putExtra("PAIS", datos[(Integer) v.getTag()][1]);
+                intent.putExtra("HAB", datos[(Integer) v.getTag()][2]);
+                intent.putExtra("CAL", datos[(Integer) v.getTag()][3]);
+
+                contexto.startActivity(intent);
+            }
+        });
+
+        numeroHabitantes.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(contexto, VisorDetalles.class);
+
+                intent.putExtra("CIUDAD", datos[(Integer) v.getTag()][0]);
+                intent.putExtra("PAIS", datos[(Integer) v.getTag()][1]);
+                intent.putExtra("HAB", datos[(Integer) v.getTag()][2]);
+                intent.putExtra("CAL", datos[(Integer) v.getTag()][3]);
+
+                contexto.startActivity(intent);
+            }
+        });
+
+        calificacion.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(contexto, VisorDetalles.class);
+
+                intent.putExtra("CIUDAD", datos[(Integer) v.getTag()][0]);
+                intent.putExtra("PAIS", datos[(Integer) v.getTag()][1]);
+                intent.putExtra("HAB", datos[(Integer) v.getTag()][2]);
+                intent.putExtra("CAL", datos[(Integer) v.getTag()][3]);
+
+                contexto.startActivity(intent);
+            }
+        });
 
 
         return vista;
